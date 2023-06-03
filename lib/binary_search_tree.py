@@ -82,6 +82,34 @@ class BinarySearchTree:
             self.in_order_traversal(action, root.right) # 3º
 
     """
+        Método que percorre a árvore pré-ordem
+        1º: visita a raiz
+        2º: percorre recursivamente a subárvore esquerda pré-ordem
+        3º: percorre recursivamente a subárvore direita pré-ordem
+    """
+    def pre_order_traversal(self, action, root = False):
+        if root is False: root = self.__root
+
+        if root is not None:
+            action(root.data)                               # 1º
+            self.pre_order_traversal(action, root.left)     # 2º
+            self.pre_order_traversal(action, root.right)    # 3º
+    
+    """
+        Método que percorre a árvore pós-ordem
+        1º: percorre recursivamente a subárvore esquerda pós-ordem
+        2º: percorre recursivamente a subárvore direita pós-ordem
+        3º: visita a raiz
+    """
+    def post_order_traversal(self, action, root = False):
+        if root is False: root = self.__root
+
+        if root is not None:
+            self.post_order_traversal(action, root.left)    # 1º
+            self.post_order_traversal(action, root.right)   # 2º
+            action(root.data)                               # 3º
+    
+    """
         Método PÚBLICO que verifica se um valor existe na ABB
     """
     def exists(self, key):
@@ -199,14 +227,5 @@ class BinarySearchTree:
 
 #############################################################################
 
-arvore = BinarySearchTree()
 
-arvore.insert(23)
-arvore.insert(39)
-arvore.insert(11)
-arvore.insert(31)
-arvore.insert(17)
-
-print("PERCURSO EM-ORDEM:")
-arvore.in_order_traversal(print)
         
